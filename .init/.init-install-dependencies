@@ -1,0 +1,4 @@
+{
+    "command": "cd db_visualizer && npm install",
+    "working_directory": "/home/kavia/workspace/code-generation/employee-performance-and-management-system-163463-162813/employee_system_database"
+}

@@ -1,0 +1,4 @@
+{
+    "command": "mysql -h localhost -u appuser -pdbuser123 -e \"SELECT VERSION()\"",
+    "working_directory": "/home/kavia/workspace/code-generation/employee-performance-and-management-system-163463-162813/employee_system_database"
+}
