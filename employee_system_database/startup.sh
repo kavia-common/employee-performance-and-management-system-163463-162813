@@ -134,6 +134,21 @@ echo "To use with Node.js viewer, run: source db_visualizer/mysql.env"
 echo "To connect to the database, use the following command:"
 echo "$(cat db_connection.txt)"
 
+# Optionally auto-apply schema if requested
+if [ "${AUTO_APPLY_SCHEMA:-false}" = "true" ]; then
+  echo ""
+  echo "AUTO_APPLY_SCHEMA=true detected; applying schema..."
+  # shellcheck disable=SC1091
+  source db_visualizer/mysql.env
+  if [ -f "schema/001_init_schema.sql" ]; then
+    echo "Applying schema from schema/001_init_schema.sql"
+    mysql -h 127.0.0.1 -P "${MYSQL_PORT}" -u "${MYSQL_USER}" "-p${MYSQL_PASSWORD}" "${MYSQL_DB}" < schema/001_init_schema.sql
+    echo "Schema applied."
+  else
+    echo "Schema file not found; skipping."
+  fi
+fi
+
 echo ""
 echo "MySQL is running in the background."
 echo "You can now start your application."
